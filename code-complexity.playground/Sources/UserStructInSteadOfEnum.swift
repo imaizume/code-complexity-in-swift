@@ -4,65 +4,63 @@ import Foundation
 
 // BEFORE
 
-enum ComplexCountry: String {
-    case japan = "日本"
-    case usa = "アメリカ"
-    case uk
+public enum SushiEnum: String {
+    case マグロ
+    case サバ
+    case サケ
 
-    var captiol: String {
+    // NOTE: computed propertyはlizardがCCNカウントの対象にしてくれないのでメソッドにしている
+    public func enName() -> String {
         switch self {
-        case .japan:
-            return "Tokyo"
-        case .usa:
-            return "Washington"
-        case .uk:
-            return "London"
+        case .マグロ:
+            return "tuna"
+        case .サバ:
+            return "mackerel"
+        case .サケ:
+            return "salmon"
         }
     }
 
-    var captiolInJapanese: String {
+    public func price() -> Int {
         switch self {
-        case .japan:
-            return "東京"
-        case .usa:
-            return "ワシントン"
-        case .uk:
-            return "ロンドン"
+        case .マグロ:
+            return 380
+        case .サバ:
+            return 270
+        case .サケ:
+            return 160
         }
     }
 }
 
 // AFTER
 
-struct SimpleCountry {
-    let jaName: String
-    let enName: String
-    let jaCapitol: String
-    let enCapitol: String
+public struct SushiStruct {
+    public let jaName: String
+    public let enName: String
+    public let price: Int
+
     private init(
         jaName: String,
         enName: String,
-        jaCapitol: String,
-        enCapitol: String
-        ) {
+        price: Int
+    ) {
         self.jaName = jaName
         self.enName = enName
-        self.jaCapitol = jaCapitol
-        self.enCapitol = enCapitol
+        self.price = price
     }
 }
 
-
-extension SimpleCountry {
-    static func japan() -> SimpleCountry {
-        return SimpleCountry(jaName: "日本", enName: "Japan", jaCapitol: "東京", enCapitol: "Tokyo")
+extension SushiStruct {
+    public static func tuna() -> SushiStruct {
+        return .init(jaName: "マグロ", enName: "tuna", price: 380)
     }
 
-    static func usa() -> SimpleCountry {
-        return SimpleCountry(jaName: "アメリカ", enName: "U.S.A.", jaCapitol: "ワシントン", enCapitol: "Washington")
+    public static func mackerel() -> SushiStruct {
+        return .init(jaName: "サバ", enName: "mackerel", price: 270)
     }
 
-    static func uk() -> SimpleCountry {
-        return SimpleCountry(jaName: "イギリス", enName: "U.K.", jaCapitol: "ロンドン", enCapitol: "London")
+    public static func salmon() -> SushiStruct {
+        return .init(jaName: "サケ", enName: "salmon", price: 160)
     }
 }
