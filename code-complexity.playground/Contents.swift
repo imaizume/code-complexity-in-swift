@@ -9,9 +9,9 @@ let sushi1: SushiEnum = .マグロ
 print(sushi1.rawValue) // マグロ
 print(sushi1.enName()) // tuna
 
-let sushi2: SushiStruct = .tuna()
-// Call struct's property.
+// Call struct's static constant.
 
+let sushi2: SushiStruct = .tuna
 print(sushi2.jaName) // マグロ
 print(sushi2.enName) // tuna
 

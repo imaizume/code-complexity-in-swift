@@ -1,7 +1,7 @@
 import Foundation
 
 // The Number of case in enum and its method tends to swell.
-// Use struct and static method instead.
+// Use struct and static constant instead.
 
 // BEFORE
 
@@ -53,15 +53,9 @@ public struct SushiStruct {
 }
 
 extension SushiStruct {
-    public static func tuna() -> SushiStruct {
-        return .init(jaName: "マグロ", enName: "tuna", price: 380)
-    }
+    public static let tuna: SushiStruct = .init(jaName: "マグロ", enName: "tuna", price: 380)
 
-    public static func mackerel() -> SushiStruct {
-        return .init(jaName: "サバ", enName: "mackerel", price: 270)
-    }
+    public static let mackerel: SushiStruct = .init(jaName: "サバ", enName: "mackerel", price: 270)
 
-    public static func salmon() -> SushiStruct {
-        return .init(jaName: "サケ", enName: "salmon", price: 160)
-    }
+    public static let salmon: SushiStruct = .init(jaName: "サケ", enName: "salmon", price: 160)
 }
