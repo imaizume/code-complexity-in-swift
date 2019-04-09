@@ -1,21 +1,28 @@
 import Foundation
 
+// Protocol with minimum required interface
+// decreases conditional branches in code and so CCN.
+
+// This constant defined as global as far as this example
+// and can be variable such as one from UserDefaults in actual case.
 let isFemale: Bool = false
 
+// BEFORE
+
 public enum ConditionalTabType: String {
-    // 女性用
+    // For female
     case femaleMyPage
     case femaleTop
     case femaleMessage
 
-    // 男性用
+    // For female
     case maleTop
     case questionBox
     case maleMessage
     case maleMypage
 
+    // Returns index in the tab menu.
     public func index() -> Int {
-        // 説明の都合上グローバル変数にしていますが実際はアプリ内フラグから取得したりします
         if isFemale {
             switch self {
             case .femaleMyPage: return 0
@@ -34,28 +41,32 @@ public enum ConditionalTabType: String {
         }
     }
 
+    // Returns text to be displayed in the tab menu.
     public func name() -> String {
         switch self {
-        case .femaleMessage, .maleMessage: return "メッセージ"
-        case .femaleMyPage, .maleMypage: return "マイページ"
-        case .femaleTop: return "女性トップ"
-        case .maleTop: return "アピール"
-        case .questionBox: return "質問箱"
+        case .femaleMessage, .maleMessage: return "Message"
+        case .femaleMyPage, .maleMypage: return "My Page"
+        case .femaleTop: return "Female Top"
+        case .maleTop: return "Appeal"
+        case .questionBox: return "Question Box"
         }
     }
 }
+
+// AFTER
 
 public protocol TabTypeContract {
     func index() -> Int
     func name() -> String
 }
 
+// Tab menus for male.
 public enum MaleTabType: String, TabTypeContract {
 
-    case maleTop = "アピール"
-    case questionBox = "質問箱"
-    case maleMessage = "メッセージ"
-    case maleMypage = "マイページ"
+    case maleTop = "Appeal"
+    case questionBox = "Question Box"
+    case maleMessage = "Message"
+    case maleMypage = "My Page"
 
     public func index() -> Int {
         switch self {
@@ -71,11 +82,12 @@ public enum MaleTabType: String, TabTypeContract {
     }
 }
 
+// Tab menus for female.
 public enum FemaleTabType: String, TabTypeContract {
 
-    case femaleMyPage = "マイページ"
-    case femaleTop = "女性トップ"
-    case femaleMessage = "メッセージ"
+    case femaleMyPage = "My Page"
+    case femaleTop = "Female Top"
+    case femaleMessage = "Message"
 
     public func index() -> Int {
         switch self {

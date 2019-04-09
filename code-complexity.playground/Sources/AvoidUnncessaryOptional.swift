@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: 不要なOptionalによるif letはCCNを上げる
+// Avoid unnecessary optional value and cut off CCN with reducing optional binding.
 
 // BEFORE
 
@@ -22,28 +22,28 @@ public func nonOptionalArgs(x: String, y: String) -> String {
     return x + " and " + y
 }
 
-// CCNの比較
+// CCN comparison among several ways of implementation.
 
-// 非オプショナル引数 → CCN:1
+// Non-optional -> CCN:1
 func nonOptionalArg(x: String) {
     print(x)
 }
 
-// オプショナル引数(Binding) → CCN:2
+// Optional Binding -> CCN:2
 func optionalArg(x: String?) {
     if let x = x {
         print(x)
     } else {
-        print("nilです")
+        print("nil value")
     }
 }
 
-// オプショナル引数(Chaining) → CCN:1
+// Optinal Chaining -> CCN:1
 func optionalChain(x: String?) {
-    print(x ?? "nilです")
+    print(x ?? "nil value")
 }
 
-// オプショナル引数(三項演算子) → CCN:2
+// Ternary Operator -> CCN:2
 func ternaryOperator(x: String?) {
-    print(x != nil ? x! : "nilです")
+    print(x != nil ? x! : "nil value")
 }

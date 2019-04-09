@@ -1,6 +1,7 @@
 import Foundation
 
-// MARK: enumに1:nの情報を持たせようとすると分岐が増えるのでstatic methodを定義する
+// The Number of case in enum and its method tends to swell.
+// Use struct and static method instead.
 
 // BEFORE
 
@@ -9,7 +10,7 @@ public enum SushiEnum: String {
     case サバ
     case サケ
 
-    // NOTE: computed propertyはlizardがCCNカウントの対象にしてくれないのでメソッドにしている
+    // NOTE: Defined as func because lizard doesn't calcurate CCN in computed property.
     public func enName() -> String {
         switch self {
         case .マグロ:
